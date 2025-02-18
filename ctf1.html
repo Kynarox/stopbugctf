@@ -8,45 +8,87 @@
         body {
             margin: 0;
             overflow: hidden;
-            background-color: whitesmoke;
+            background-color: #1a1a1a;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .bug-container {
+            position: relative;
+            flex-grow: 1;
         }
         .bug {
-            width: 50px;
-            height: 50px;
+            width: 80px;
+            height: 80px;
             position: absolute;
-            background: url(spider_413203.png) no-repeat center;
+            background: url('/spider_413203.png') no-repeat center;
             background-size: contain;
+            cursor: pointer;
+            transition: all 0.5s ease-out;
+        }
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin: 20px 0;
+        }
+        p {
+            color: #81C784;
+            font-size: 1.2em;
         }
     </style>
 </head>
 <body>
-    <h1 style="color: green;font: size 50px;font-weight:bolder">Catch the Bug!</h1>
-    <p style="color:green;font-size:30px;font-weight:bold">Can you stop the bug?</p>
-    <div class="bug" id="bug"></div>
-    
+    <h1>🐞 Catch the Bug! 🕷️</h1>
+    <p>Can you stop the wandering bug?</p>
+    <div class="bug-container">
+        <div class="bug" id="bug"></div>
+    </div>
+
     <script>
-       let intervalId;
+        const bug = document.getElementById('bug');
+        let intervalId;
+        
+        // Initial position
+        let currentX = window.innerWidth / 2;
+        let currentY = window.innerHeight / 2;
+        bug.style.left = `${currentX}px`;
+        bug.style.top = `${currentY}px`;
 
-function moveBug() {
-    const x = Math.random() * (window.innerWidth - 50);
-    const y = Math.random() * (window.innerHeight - 50);
-    bug.style.left = `${x}px`;
-    bug.style.top = `${y}px`;
-}
+        function moveBug() {
+            const newX = Math.random() * (window.innerWidth - 80);
+            const newY = Math.random() * (window.innerHeight - 80);
+            
+            // Smooth movement
+            bug.style.transform = `translate(${newX - currentX}px, ${newY - currentY}px)`;
+            currentX = newX;
+            currentY = newY;
+        }
 
-// Store interval ID properly
-intervalId = setInterval(moveBug, 800);
+        // Start movement
+        intervalId = setInterval(moveBug, 800);
 
-function stopBug(isCaught) {
-    if (isCaught === true) {
-        clearInterval(intervalId);
-        bug.style.display = "none";
-        alert("FLAG{C4ught_th3_Buggy_C0d3}");
-    }
-}
+        // CTF Solution function
+        window.stopBug = (success) => {
+            if (success === true) {
+                clearInterval(intervalId);
+                bug.style.transform = 'scale(0)';
+                setTimeout(() => {
+                    alert('FLAG{BUG_SQU4SH3D_V3RC3L}');
+                }, 500);
+            }
+        };
+
+        // Red herring click handler
+        bug.addEventListener('click', () => {
+            bug.style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+                bug.style.transform = '';
+            }, 500);
+        });
     </script>
 </body>
 </html>
