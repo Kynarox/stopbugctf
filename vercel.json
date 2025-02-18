@@ -1,0 +1,14 @@
+{
+    "routes": [
+      { 
+        "src": "/(.*)", 
+        "dest": "/ctf1.html",
+        "headers": {
+          "Content-Security-Policy": "default-src 'self' 'unsafe-inline'",
+          "X-Frame-Options": "DENY"
+        }
+      }
+    ],
+    "cleanUrls": true,
+    "public": true
+  }

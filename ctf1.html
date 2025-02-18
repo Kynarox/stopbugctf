@@ -28,28 +28,25 @@
     <div class="bug" id="bug"></div>
     
     <script>
-        const bug = document.getElementById("bug");
+       let intervalId;
 
-        function moveBug() {
-            const x = Math.random() * (window.innerWidth - 50);
-            const y = Math.random() * (window.innerHeight - 50);
-            bug.style.left = `${x}px`;
-            bug.style.top = `${y}px`;
-        }
-        
-        setInterval(moveBug, 800);
-        
-        function stopBug(isCaught) {
-            if (isCaught === true) {
-                clearInterval(moveBug);
-                bug.style.display = "none";
-                alert("Congratulations! You caught the bug.");
-            }
-        }
-        
-        bug.addEventListener("click", () => {
-            alert("Hmm... that didn't work. Try another way!");
-        });
+function moveBug() {
+    const x = Math.random() * (window.innerWidth - 50);
+    const y = Math.random() * (window.innerHeight - 50);
+    bug.style.left = `${x}px`;
+    bug.style.top = `${y}px`;
+}
+
+// Store interval ID properly
+intervalId = setInterval(moveBug, 800);
+
+function stopBug(isCaught) {
+    if (isCaught === true) {
+        clearInterval(intervalId);
+        bug.style.display = "none";
+        alert("FLAG{C4ught_th3_Buggy_C0d3}");
+    }
+}
     </script>
 </body>
 </html>
