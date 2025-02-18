@@ -1,14 +1,18 @@
 {
-    "routes": [
-      { 
-        "src": "/(.*)", 
-        "dest": "/ctf1.html",
-        "headers": {
-          "Content-Security-Policy": "default-src 'self' 'unsafe-inline'",
-          "X-Frame-Options": "DENY"
-        }
+    "version": 2,
+    "builds": [
+      {
+        "src": "*.html",
+        "use": "@vercel/static"
       }
     ],
-    "cleanUrls": true,
-    "public": true
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/ctf1.html",
+        "headers": {
+          "Content-Security-Policy": "default-src 'self' 'unsafe-inline'"
+        }
+      }
+    ]
   }
