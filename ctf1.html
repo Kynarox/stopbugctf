@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Bug - CTF Challenge</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: whitesmoke;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .bug {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background: url(spider_413203.png) no-repeat center;
+            background-size: contain;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: green;font: size 50px;font-weight:bolder">Catch the Bug!</h1>
+    <p style="color:green;font-size:30px;font-weight:bold">Can you stop the bug?</p>
+    <div class="bug" id="bug"></div>
+    
+    <script>
+        const bug = document.getElementById("bug");
+
+        function moveBug() {
+            const x = Math.random() * (window.innerWidth - 50);
+            const y = Math.random() * (window.innerHeight - 50);
+            bug.style.left = `${x}px`;
+            bug.style.top = `${y}px`;
+        }
+        
+        setInterval(moveBug, 800);
+        
+        function stopBug(isCaught) {
+            if (isCaught === true) {
+                clearInterval(moveBug);
+                bug.style.display = "none";
+                alert("Congratulations! You caught the bug.");
+            }
+        }
+        
+        bug.addEventListener("click", () => {
+            alert("Hmm... that didn't work. Try another way!");
+        });
+    </script>
+</body>
+</html>
