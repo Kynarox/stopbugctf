@@ -12,16 +12,10 @@
     {
       "src": "script.js",
       "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/img/(.*)",
-      "dest": "/public/img/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "src": "public/(.*)",
+      "use": "@vercel/static"
     }
   ]
 }
