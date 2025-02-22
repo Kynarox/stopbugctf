@@ -13,5 +13,6 @@
       "src": "script.js",
       "use": "@vercel/static"
     }
-  ]
+  ],
+  "public": "public"
 }
