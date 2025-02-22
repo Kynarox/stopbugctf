@@ -9,7 +9,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/ctf1.html",
+        "dest": "/index.html",
         "headers": {
           "Content-Security-Policy": "default-src 'self' 'unsafe-inline'"
         }
