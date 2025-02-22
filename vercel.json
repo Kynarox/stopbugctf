@@ -13,5 +13,15 @@
       "src": "script.js",
       "use": "@vercel/static"
     }
+  ],
+    "routes": [
+      {
+        "src": "/spider_413203.png",
+        "dest": "/public/spider_413203.png"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/$1"
+      }
   ]
 }
